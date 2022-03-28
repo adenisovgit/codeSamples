@@ -1,0 +1,19 @@
+/* stylelint-disable max-nesting-depth */
+@import '~@utils/scss/getClass';
+@import '~@utils/scss/getValue';
+
+$base: getClass('baseClassName');
+$quillEditor: getClass('quillEditorClassName');
+$richTextEditor: getClass('richTextEditorBaseClassName');
+
+#{$base} {
+
+  #{$richTextEditor} {
+
+    #{$quillEditor} {
+      * {
+        line-height: 1.2em;
+      }
+    }
+  }
+}
