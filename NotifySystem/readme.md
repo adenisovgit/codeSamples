@@ -1,10 +1,8 @@
 Banner notifications system.
 
-
+```
 import { showNotification } from '@molecules/NotifyManager';
 
-
-......
 showNotification({
         notifyId: 'Expired',
         schema: 'red',
@@ -12,3 +10,4 @@ showNotification({
         fixed: true,
         onClick: openUpdateModal,
       });
+```
