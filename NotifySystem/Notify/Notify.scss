@@ -1,0 +1,86 @@
+@import '~@utils/scss/getClass';
+@import '~@utils/scss/getValue';
+@import '~@utils/scss/getVariable';
+@import '~@utils/scss/stringToColor';
+@import '~@utils/scss/rgbaToRgb.scss';
+
+$notifyLayerClassName: getClass('notifyLayerClassName');
+$notifyClassName: getClass('notifyClassName');
+$notifyContentClassName: getClass('notifyContentClassName');
+$notifyCloseButtonPrefixClassName: getClass('notifyCloseButtonPrefixClassName');
+$notifySchemaIconClassName: getClass('notifySchemaIconClassName');
+$notifySchemaPrefixClassName: getClass('notifySchemaPrefixClassName');
+$notifyCloseButtonDivClassName:getClass('notifyCloseButtonDivClassName');
+
+$notifyZIndex: getValue('zIndexes.zIndexNotify');
+$transition: getValue('transitions.transitionLong');
+
+$notifySchemas: getVariable('colorSchema');
+
+#{$notifyLayerClassName} {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  z-index: $notifyZIndex;
+}
+
+#{$notifyClassName} {
+  position: absolute;
+  display: inline-flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 13px 80px 13px 100px;
+}
+
+#{$notifyContentClassName} {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  width: 100%;
+}
+
+#{$notifySchemaIconClassName} {
+  margin-right: 16px;
+}
+
+#{$notifyCloseButtonDivClassName} {
+  width: 20px;
+  height: 20px;
+}
+
+@each $name,
+  $colors in $notifySchemas {
+
+  $bgcolorBase: stringToColor(map-get($colors, 'background'));
+  $bgcolorAlpha: rgba($bgcolorBase, 0.1);
+  $bgcolor: rgbaToRgb($bgcolorAlpha);
+  $fontcolor: stringToColor(map-get($colors, 'color'));
+
+  #{$notifySchemaPrefixClassName}#{$name} {
+    background-color: $bgcolor;
+    color: $fontcolor;
+  }
+}
+@each $name,
+  $colors in $notifySchemas {
+
+  $bgcolor: stringToColor(map-get($colors, 'background'));
+  $fontcolor: stringToColor(map-get($colors, 'closeButtonColor'));
+
+  #{$notifyCloseButtonPrefixClassName}#{$name} {
+    background-color: rgba($bgcolor, 0.2);
+    border-radius: 50%;
+    color: $fontcolor;
+
+    &:hover {
+      background-color: rgba($bgcolor, 0.4);
+    }
+  }
+
+}
